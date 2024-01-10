@@ -22,7 +22,7 @@ public class Order {
 
 
     @ManyToOne
-    @JoinColumn(name = "orders")
+    @JoinColumn(name = "user_id")
     private User user;
 
     @ToString.Exclude
