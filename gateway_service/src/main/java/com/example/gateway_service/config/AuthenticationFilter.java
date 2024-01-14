@@ -1,6 +1,6 @@
 package com.example.gateway_service.config;
 
-import org.oril.services.JwtUtils;
+import com.example.gateway_service.services.JwtUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.cloud.gateway.filter.GatewayFilter;
@@ -18,8 +18,10 @@ public class AuthenticationFilter implements GatewayFilter {
 
     @Autowired
     private RouterValidator validator;
+
+
     @Autowired
-    private JwtUtcils jwtUtils;
+    private JwtUtils jwtUtils;
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
@@ -32,9 +34,7 @@ public class AuthenticationFilter implements GatewayFilter {
 
             final String token = request.getHeaders().getOrEmpty("Authorization").get(0);
 
-            if (jwtUtils.isExpired(token)) {
-                return onError(exchange, HttpStatus.UNAUTHORIZED);
-            }
+            jwtUtils.validateToken(token);
         }
         return chain.filter(exchange);
     }

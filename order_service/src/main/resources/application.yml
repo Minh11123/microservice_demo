@@ -4,9 +4,17 @@ server:
 
 spring:
   datasource:
-    url: jdbc:oracle:thin:@localhost:1521/orcl.lpb.lv.net
+    url: jdbc:oracle:thin:@localhost:1521/orclXDB
     username: C##minhlv
     password: 12345678
+  jpa:
+    generate-ddl: true
+    show-sql: true
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        format_sql: true
   application:
     name: order-service
 #
@@ -19,6 +27,8 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://localhost:8761/eureka
+    register-with-eureka: true
+    fetch-registry: true
 #eureka.client.register-with-eureka=true
 #eureka.client.fetch-registry=true
 #spring.application.name=microservice-demo
