@@ -1,0 +1,29 @@
+security:
+  jwt:
+    secret-key: verysecretkeyohsosecretdamnhowlongisthispleasedontusethisinproduction
+    token-duration: 1D
+
+logging:
+  level:
+    org.springframework: debug
+
+
+server:
+  port: 8888
+
+
+spring:
+  datasource:
+    url: jdbc:oracle:thin:@localhost:1521/orclXDB
+    username: C##authenService
+    password: 12345678
+  application:
+    name: auth-service
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
