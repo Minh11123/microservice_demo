@@ -4,7 +4,8 @@ server:
 
 spring:
   datasource:
-    url: jdbc:oracle:thin:@localhost:1521/orclXDB
+#    url: jdbc:oracle:thin:@localhost:1521/orclXDB
+    url: jdbc:oracle:thin:@localhost:1521/orcl.lpb.lv.net
     username: C##minhlv
     password: 12345678
   jpa:
@@ -12,6 +13,7 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: create
+
     properties:
       hibernate:
         format_sql: true

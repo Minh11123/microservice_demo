@@ -12,7 +12,8 @@ import java.util.List;
 public class Category {
     @Id
     @Column(name = "category_id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy=GenerationType.AUTO, generator="my_entity_seq_gen")
+    @SequenceGenerator(name="my_entity_seq_gen", sequenceName="MY_ENTITY_SEQ")
     private Long id;
 
 
@@ -22,8 +23,9 @@ public class Category {
     @Column(name = "title")
     private String title;
 
-
-    @ToString.Exclude
-    @OneToMany(mappedBy = "category")
+    @OneToMany
+    @JoinColumn(name = "category_id")
     private List<Product> products;
+
+
 }
