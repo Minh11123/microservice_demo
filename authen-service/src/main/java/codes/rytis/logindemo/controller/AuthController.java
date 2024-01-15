@@ -37,6 +37,8 @@ public class AuthController {
         }
         User user = new User();
         user.setEmail(signupRequest.getEmail());
+        user.setPhoneNumber(signupRequest.getPhone_number());
+        user.setFullName(signupRequest.getFullname());
         user.setExtraInfo(signupRequest.getEmail());
         String password = new BCryptPasswordEncoder().encode(signupRequest.getPassword());
         user.setPassword(password);
