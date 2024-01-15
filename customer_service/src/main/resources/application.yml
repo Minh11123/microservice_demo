@@ -1,0 +1,37 @@
+server:
+  port: 8082
+
+
+spring:
+  datasource:
+    #    url: jdbc:oracle:thin:@localhost:1521/orclXDB
+    url: jdbc:oracle:thin:@localhost:1521/orcl.lpb.lv.net
+    username: C##authenService
+    password: 12345678
+  jpa:
+    generate-ddl: true
+    show-sql: true
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        format_sql: true
+  application:
+    name: customer-service
+#
+#spring.jpa.hibernate.ddl-auto=update
+#spring.jpa.show-sql=true
+#spring.jpa.properties.hibernate.format_sql=true
+#
+#
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
+    register-with-eureka: true
+    fetch-registry: true
+#eureka.client.register-with-eureka=true
+#eureka.client.fetch-registry=true
+#spring.application.name=microservice-demo
+
+
