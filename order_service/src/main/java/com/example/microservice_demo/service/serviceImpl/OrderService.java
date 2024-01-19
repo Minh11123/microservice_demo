@@ -1,5 +1,6 @@
 package com.example.microservice_demo.service.serviceImpl;
 
+import com.example.microservice_demo.controller.GetInforUser;
 import com.example.microservice_demo.controller.reponse.UserResponse;
 import com.example.microservice_demo.controller.request.CreateOrderRequest;
 import com.example.microservice_demo.model.Order;
@@ -24,7 +25,7 @@ public class OrderService implements IOrderService {
     private ProductRepo productRepo;
 
     @Autowired
-    private com.example.microservice_demo.controller.getInforUser getInforUser;
+    private GetInforUser getInforUser;
     @Override
     public List<Order> getAll() {
         return orderRepo.findAll();
