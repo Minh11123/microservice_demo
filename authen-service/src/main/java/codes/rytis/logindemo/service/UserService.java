@@ -1,5 +1,6 @@
 package codes.rytis.logindemo.service;
 
+import codes.rytis.logindemo.config.AppException;
 import codes.rytis.logindemo.entity.User;
 import codes.rytis.logindemo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,10 @@ public class UserService {
         // All of this code would come from the database, but for simplicity of this example
         // Let's just fake it
 
-        return Optional.ofNullable(userRepository.findByEmail(email));
+        try {
+            return Optional.ofNullable(userRepository.findByEmail(email));
+        }catch (Exception e){
+            throw new AppException(e);
+        }
     }
 }

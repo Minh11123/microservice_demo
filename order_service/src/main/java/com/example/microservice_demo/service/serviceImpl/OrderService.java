@@ -7,6 +7,7 @@ import com.example.microservice_demo.model.Order;
 import com.example.microservice_demo.repository.OrderRepo;
 import com.example.microservice_demo.repository.ProductRepo;
 import com.example.microservice_demo.service.IOrderService;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,7 +33,7 @@ public class OrderService implements IOrderService {
     }
 
     @Override
-    public Order create(CreateOrderRequest createOrderRequest) {
+    public Order create(@NotNull CreateOrderRequest createOrderRequest) {
         UserResponse userResponse = getInforUser.getInfor(createOrderRequest.getCustomerId()).getBody();
         Order order = new Order();
         order.setOrderStatus("new");

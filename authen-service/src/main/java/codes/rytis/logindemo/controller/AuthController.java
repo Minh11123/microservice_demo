@@ -1,5 +1,7 @@
 package codes.rytis.logindemo.controller;
 
+import codes.rytis.logindemo.config.AppException;
+import codes.rytis.logindemo.config.ErrorResponseBase;
 import codes.rytis.logindemo.entity.User;
 import codes.rytis.logindemo.model.LoginRequest;
 import codes.rytis.logindemo.model.LoginResponse;
@@ -33,7 +35,7 @@ public class AuthController {
     @PostMapping("/signup")
     public ResponseEntity<?> signup(@RequestBody @Validated SignupRequest signupRequest) {
         if (userRepository.existsByEmail(signupRequest.getEmail())){
-            return new ResponseEntity<>("Email da ton tai!", HttpStatus.BAD_REQUEST);
+            throw  new AppException(ErrorResponseBase.IS_EXISTED);
         }
         User user = new User();
         user.setEmail(signupRequest.getEmail());
