@@ -4,14 +4,18 @@ package com.example.microservice_demo.controller;
 import com.example.microservice_demo.controller.request.CreateOrderRequest;
 import com.example.microservice_demo.repository.OrderRepo;
 import com.example.microservice_demo.service.IOrderService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+
 @RestController
 @RequestMapping("order")
 public class OrderController {
+
+    private static final Logger logger = Logger.getLogger(OrderController.class);
     @Autowired
     private IOrderService orderService;
 
@@ -24,6 +28,7 @@ public class OrderController {
 
     @GetMapping("")
     public ResponseEntity<?> getAll(){
+        logger.info("controller");
         return new ResponseEntity<>(orderService.getAll(), HttpStatus.OK);
     }
 

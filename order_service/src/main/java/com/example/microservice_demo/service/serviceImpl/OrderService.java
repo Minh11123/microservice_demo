@@ -7,6 +7,7 @@ import com.example.microservice_demo.model.Order;
 import com.example.microservice_demo.repository.OrderRepo;
 import com.example.microservice_demo.repository.ProductRepo;
 import com.example.microservice_demo.service.IOrderService;
+import org.apache.log4j.Logger;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,6 +20,8 @@ import java.util.List;
 @Service
 public class OrderService implements IOrderService {
 
+    private final static Logger logger =  Logger.getLogger(OrderService.class);
+
     @Autowired
     private OrderRepo orderRepo;
 
@@ -29,11 +32,12 @@ public class OrderService implements IOrderService {
     private GetInforUser getInforUser;
     @Override
     public List<Order> getAll() {
+        logger.info("service");
         return orderRepo.findAll();
     }
 
     @Override
-    public Order create(@NotNull CreateOrderRequest createOrderRequest) {
+    public Order create(CreateOrderRequest createOrderRequest) {
         UserResponse userResponse = getInforUser.getInfor(createOrderRequest.getCustomerId()).getBody();
         Order order = new Order();
         order.setOrderStatus("new");

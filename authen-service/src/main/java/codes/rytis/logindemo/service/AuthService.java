@@ -28,7 +28,6 @@ public class AuthService {
     private CustomUserDetailService customUserDetailService;
 
     public LoginResponse attemptLogin(String email, String password) {
-        try {
             Authentication authentication = authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(email, password)
             );
@@ -44,8 +43,5 @@ public class AuthService {
                     .token(token)
                     .role(principal.getAuthorities().stream().map(GrantedAuthority::getAuthority).toList())
                     .build();
-        }catch (Exception e){
-            throw  new AppException(ErrorResponseBase.USER_NOT_EXISTED);
-        }
     }
 }

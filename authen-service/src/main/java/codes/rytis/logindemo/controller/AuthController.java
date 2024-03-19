@@ -9,20 +9,23 @@ import codes.rytis.logindemo.model.signup.SignupRequest;
 import codes.rytis.logindemo.repository.UserRepository;
 import codes.rytis.logindemo.service.AuthService;
 import lombok.RequiredArgsConstructor;
+
+
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
+@CrossOrigin("*")
 @RequestMapping("/auth")
 @RequiredArgsConstructor
 public class AuthController {
+
+    private final static Logger logger = Logger.getLogger(AuthController.class);
     private final AuthService authService;
     @Autowired
     private UserRepository userRepository;
@@ -34,9 +37,21 @@ public class AuthController {
 
     @PostMapping("/signup")
     public ResponseEntity<?> signup(@RequestBody @Validated SignupRequest signupRequest) {
-        if (userRepository.existsByEmail(signupRequest.getEmail())){
-            throw  new AppException(ErrorResponseBase.IS_EXISTED);
+        try {
+            boolean emailExists = userRepository.existsByEmail(signupRequest.getEmail());
+            if (emailExists) {
+                throw new AppException(ErrorResponseBase.IS_EXISTED);
+            }
+            logger.info("not exist user by email");
+            // Thêm logic xử lý nếu email chưa tồn tại
+        } catch (AppException e) {
+            logger.error("Error: Email already exists: {}" + signupRequest.getEmail(), e);
+            throw e;
+        } catch (Exception e) {
+            logger.error("Unexpected error occurred", e);
+            // Xử lý các lỗi khác nếu cần
         }
+
         User user = new User();
         user.setEmail(signupRequest.getEmail());
         user.setPhoneNumber(signupRequest.getPhone_number());

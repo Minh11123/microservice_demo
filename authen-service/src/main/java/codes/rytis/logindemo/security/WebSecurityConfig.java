@@ -34,11 +34,11 @@ public class WebSecurityConfig {
             .securityMatcher("/**")
             .authorizeHttpRequests(registry -> registry
                     .requestMatchers("/").permitAll()
-                    .requestMatchers("/public/**").hasRole("USER")
-                    .requestMatchers("/hello/**").hasRole("ADMIN")
+                    .requestMatchers("/public/**").permitAll()
+                    .requestMatchers("/hello/**").permitAll()
                     .requestMatchers("/auth/**").permitAll()
                     .requestMatchers("/auth/**").permitAll()
-                    .requestMatchers("/admin").hasRole("ADMIN")
+                    .requestMatchers("/admin").permitAll()
                     .anyRequest().authenticated()
             );
         return http.build();

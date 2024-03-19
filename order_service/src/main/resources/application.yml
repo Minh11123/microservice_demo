@@ -4,8 +4,8 @@ server:
 
 spring:
   datasource:
-#    url: jdbc:oracle:thin:@localhost:1521/orclXDB
-    url: jdbc:oracle:thin:@localhost:1521/orcl.lpb.lv.net
+    url: jdbc:oracle:thin:@localhost:1521/orclXDB
+#    url: jdbc:oracle:thin:@localhost:1521/orcl.lpb.lv.net
     username: C##minhlv
     password: 12345678
   jpa:
@@ -34,4 +34,5 @@ eureka:
 #eureka.client.register-with-eureka=true
 #eureka.client.fetch-registry=true
 #spring.application.name=microservice-demo
+
 
