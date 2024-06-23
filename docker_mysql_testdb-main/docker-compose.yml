@@ -1,0 +1,16 @@
+services:
+  customer_service_db:
+    image: mysql:8.1.0
+    container_name: customer_service_db
+    restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD : Abc123456789@
+      MYSQL_ROOT_HOST : "%"
+    networks:
+      - microservice_system
+
+networks:
+  microservice_system:
+    external: true
