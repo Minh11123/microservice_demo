@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  customer_service:
+    build: .
+    image: customer_service:latest
+    container_name: customer_service
+    ports:
+      - "8082:8082"
+    environment:
+      SPRING_PROFILES_ACTIVE:
+    networks:
+      - microservice_system
+networks:
+  microservice_system:
+    external: true

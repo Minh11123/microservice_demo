@@ -11,13 +11,12 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "\"user\"")
+@Table(name = "user")
 @Data
 public class User {
     @Id
     @Column(name = "ID")
-    @GeneratedValue(strategy=GenerationType.AUTO, generator="my_entity_seq_gen")
-    @SequenceGenerator(name="my_entity_seq_gen", sequenceName="MY_ENTITY_SEQ")
+    @GeneratedValue(strategy=GenerationType.IDENTITY)  // Use IDENTITY for MySQL auto-increment
     private Long id;
 
     @Column(name = "email")
@@ -37,7 +36,4 @@ public class User {
 
     @Column(name = "extraInfo")
     private String extraInfo;
-
-
 }
-
