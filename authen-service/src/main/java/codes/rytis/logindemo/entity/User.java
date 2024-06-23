@@ -1,6 +1,7 @@
 package codes.rytis.logindemo.entity;
 
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -13,6 +14,7 @@ import lombok.Setter;
 @Entity
 @Table(name = "\"user\"")
 @Data
+@Builder
 public class User {
     @Id
     @Column(name = "ID")

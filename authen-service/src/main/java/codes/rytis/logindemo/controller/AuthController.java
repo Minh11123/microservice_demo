@@ -51,15 +51,14 @@ public class AuthController {
             logger.error("Unexpected error occurred", e);
             // Xử lý các lỗi khác nếu cần
         }
-
-        User user = new User();
-        user.setEmail(signupRequest.getEmail());
-        user.setPhoneNumber(signupRequest.getPhone_number());
-        user.setFullName(signupRequest.getFullname());
-        user.setExtraInfo(signupRequest.getEmail());
-        String password = new BCryptPasswordEncoder().encode(signupRequest.getPassword());
-        user.setPassword(password);
-        user.setRole("USER");
+        User user = User.builder()
+                    .email(signupRequest.getEmail())
+                    .phoneNumber(signupRequest.getPhone_number())
+                    .fullName(signupRequest.getFullname())
+                    .extraInfo(signupRequest.getExtraInfo())
+                    .password(new BCryptPasswordEncoder().encode(signupRequest.getPassword()))
+                    .role("USER")
+                    .build();
         userRepository.save(user);
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
