@@ -1,0 +1,13 @@
+services:
+  gateway-service:
+    build: .
+    image: gateway:latest
+    container_name: gateway-service
+    ports:
+      - 8088:8088
+    networks:
+      - microservice_system
+
+networks:
+  microservice_system:
+    external: true

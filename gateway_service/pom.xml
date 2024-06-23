@@ -11,7 +11,7 @@
 	<groupId>com.example</groupId>
 	<artifactId>gateway_service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 	<name>gateway_service</name>
 	<description>gateway_service</description>
 	<properties>
@@ -97,7 +97,15 @@
 	</dependencyManagement>
 
 	<build>
+		<finalName>gateway</finalName>
 		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<outputDirectory>${basedir}/dist</outputDirectory>
+				</configuration>
+			</plugin>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
