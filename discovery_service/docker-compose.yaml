@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  discovery:
+    build: ./discovery
+    image: discovery:latest
+    container_name: discovery
+    ports:
+      - "8761:8761"
+    networks:
+      - microservice_system
+
+networks:
+  microservice_system:
+    external: true
