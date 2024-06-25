@@ -1,9 +1,12 @@
-package codes.rytis.logindemo.model.signup;
+package com.auth.model.signup;
+
 
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.Data;
+
+
 
 
 @Data

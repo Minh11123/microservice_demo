@@ -1,4 +1,4 @@
-package codes.rytis.logindemo.security;
+package com.auth.security;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;

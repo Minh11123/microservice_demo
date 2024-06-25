@@ -1,4 +1,4 @@
-//package codes.rytis.logindemo.config.rabbitmq;
+package com.auth.config.rabbitmq;//package codes.rytis.logindemo.config.rabbitmq;
 //
 //import org.springframework.amqp.core.AmqpAdmin;
 //import org.springframework.amqp.rabbit.annotation.EnableRabbit;

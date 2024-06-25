@@ -1,4 +1,4 @@
-//package codes.rytis.logindemo.config.rabbitmq;
+package com.auth.config.rabbitmq;//package codes.rytis.logindemo.config.rabbitmq;
 //
 //import codes.rytis.logindemo.constants.JobQueue;
 //import org.springframework.amqp.core.AmqpAdmin;

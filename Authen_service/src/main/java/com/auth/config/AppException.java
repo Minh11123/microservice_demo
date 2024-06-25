@@ -1,12 +1,14 @@
-package codes.rytis.logindemo.config;
+package com.auth.config;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.springframework.http.HttpStatus;
 
 import java.time.Instant;
 
+@EqualsAndHashCode(callSuper = true)
 @Data
 @JsonIgnoreProperties({"stackTrace", "cause", "suppressed","localizedMessage"})
 @NoArgsConstructor

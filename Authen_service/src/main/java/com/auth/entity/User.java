@@ -1,4 +1,4 @@
-package codes.rytis.logindemo.entity;
+package com.auth.entity;
 
 import jakarta.persistence.*;
 import lombok.*;

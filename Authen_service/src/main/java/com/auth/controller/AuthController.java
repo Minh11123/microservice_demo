@@ -1,23 +1,19 @@
-package codes.rytis.logindemo.controller;
+package com.auth.controller;
 
-import codes.rytis.logindemo.config.AppException;
-import codes.rytis.logindemo.config.ErrorResponseBase;
-import codes.rytis.logindemo.entity.User;
-import codes.rytis.logindemo.model.LoginRequest;
-import codes.rytis.logindemo.model.LoginResponse;
-import codes.rytis.logindemo.model.signup.SignupRequest;
-import codes.rytis.logindemo.repository.UserRepository;
-import codes.rytis.logindemo.service.AuthService;
+import com.auth.config.AppException;
+import com.auth.entity.User;
+import com.auth.model.LoginRequest;
+import com.auth.model.LoginResponse;
+import com.auth.model.signup.SignupRequest;
+import com.auth.repository.UserRepository;
+import com.auth.service.AuthService;
 import lombok.RequiredArgsConstructor;
-
-
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.validation.BindException;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 

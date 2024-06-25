@@ -1,22 +1,19 @@
-package codes.rytis.logindemo.service;
-
-import codes.rytis.logindemo.config.AppException;
-import codes.rytis.logindemo.config.ErrorResponseBase;
-import codes.rytis.logindemo.controller.AuthController;
-import codes.rytis.logindemo.model.LoginResponse;
-import codes.rytis.logindemo.security.CustomUserDetailService;
-import codes.rytis.logindemo.security.JwtIssuer;
-import codes.rytis.logindemo.security.UserPrincipal;
+package com.auth.service;
+import com.auth.config.AppException;
+import com.auth.controller.AuthController;
+import com.auth.model.LoginResponse;
+import com.auth.security.CustomUserDetailService;
+import com.auth.security.JwtIssuer;
+import com.auth.security.UserPrincipal;
 import lombok.RequiredArgsConstructor;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -31,8 +28,7 @@ public class AuthService {
     @Autowired
     private CustomUserDetailService customUserDetailService;
 
-    public LoginResponse attemptLogin(String email, String password)  {
-        try {
+    public LoginResponse attemptLogin(String email, String password) throws AppException, AuthenticationException{
             Authentication authentication = authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(email, password)
             );
@@ -48,8 +44,5 @@ public class AuthService {
                     .token(token)
                     .role(principal.getAuthorities().stream().map(GrantedAuthority::getAuthority).toList())
                     .build();
-        } catch (AppException e){
-            throw new AppException(e);
-        }
     }
 }

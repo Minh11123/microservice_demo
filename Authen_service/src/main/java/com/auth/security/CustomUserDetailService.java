@@ -1,11 +1,11 @@
-package codes.rytis.logindemo.security;
+package com.auth.security;
 
-import codes.rytis.logindemo.config.AppException;
-import codes.rytis.logindemo.config.ErrorResponseBase;
-import codes.rytis.logindemo.service.UserService;
+
+import com.auth.config.AppException;
+import com.auth.config.ErrorResponseBase;
+import com.auth.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.apache.log4j.Logger;
-import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

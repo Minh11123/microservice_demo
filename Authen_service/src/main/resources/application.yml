@@ -13,6 +13,8 @@ server:
 
 
 spring:
+  application:
+    name: authen-service
   datasource:
     url: jdbc:mysql://192.168.2.182:3306/authen_service?createDatabaseIfNotExist=true
     username: root
@@ -30,4 +32,6 @@ spring:
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://localhost:8761/eureka
+      defaultZone: http://discovery:8761/eureka
+    register-with-eureka: true
+    fetch-registry: true
