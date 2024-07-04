@@ -6,13 +6,12 @@ import lombok.Data;
 import java.util.List;
 
 @Entity
-@Table(name = "\"category\"")
+@Table(name = "category")
 @Data
 public class Category {
     @Id
     @Column(name = "category_id")
-    @GeneratedValue(strategy=GenerationType.AUTO, generator="my_entity_seq_gen")
-    @SequenceGenerator(name="my_entity_seq_gen", sequenceName="MY_ENTITY_SEQ")
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
 
 

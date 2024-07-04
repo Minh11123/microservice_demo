@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  order_service:
+    build: .
+    image: order_service:latest
+    container_name: order_service
+    ports:
+      - "8080:8080"
+    networks:
+      - microservice_system
+networks:
+  microservice_system:
+    external: true

@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-@Table(name = "\"order\"")
+@Table(name = "order")
 @Entity
 @Data
 public class Order {
@@ -16,8 +16,7 @@ public class Order {
 
     @Id
     @Column(name = "order_id")
-    @GeneratedValue(strategy=GenerationType.AUTO, generator="my_entity_seq_gen")
-    @SequenceGenerator(name="my_entity_seq_gen", sequenceName="MY_ENTITY_SEQ")
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
 
 

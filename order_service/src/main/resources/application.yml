@@ -4,19 +4,19 @@ server:
 
 spring:
   datasource:
-    url: jdbc:oracle:thin:@localhost:1521/orclXDB
-#    url: jdbc:oracle:thin:@localhost:1521/orcl.lpb.lv.net
-    username: C##minhlv
-    password: 12345678
+    url: jdbc:mysql://192.168.2.182:3306/order_service?createDatabaseIfNotExist=true
+    username: root
+    password: Abc123456789@
+    driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     generate-ddl: true
     show-sql: true
     hibernate:
-      ddl-auto: create
-
+      ddl-auto: update
     properties:
       hibernate:
         format_sql: true
+        dialect: org.hibernate.dialect.MySQL8Dialect
   application:
     name: order-service
 #
@@ -28,7 +28,7 @@ spring:
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://localhost:8761/eureka
+      defaultZone: http://192.168.2.182:8761/eureka
     register-with-eureka: true
     fetch-registry: true
 #eureka.client.register-with-eureka=true
