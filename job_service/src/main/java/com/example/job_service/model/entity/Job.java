@@ -2,7 +2,9 @@ package com.example.job_service.model.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -13,6 +15,8 @@ import java.util.List;
 @Table(name = "jobs")
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
+@Setter
 public class Job {
 
     @Id
@@ -20,27 +24,34 @@ public class Job {
     @Column(name = "id")
     private Long jobId;
 
-    @Column(nullable = false)
+    @Column(nullable = true, unique = false)
     private String title;
 
-    @Column(columnDefinition = "TEXT")
+    @Column(nullable = true)
     private String description;
 
+    @Column(nullable = true)
     private String location;
+    @Column(nullable = true)
     private BigDecimal salary;
+    @Column(nullable = true)
     private LocalDateTime postedDate;
+    @Column(nullable = true)
     private LocalDateTime expirationDate;
 
+    @Column(nullable = true)
+    private LocalDateTime updatedDate;
+
+    @Column(nullable = true)
+    private String address;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "company_id", nullable = false)
+    @JoinColumn(name = "company_id", nullable = true)
     private Company company;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "category_id", nullable = false)
+    @JoinColumn(name = "category_id", nullable = true)
     private JobCategory category;
 
-    @OneToMany(mappedBy = "job", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<JobRequirement> requirements = new ArrayList<>();
 
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(

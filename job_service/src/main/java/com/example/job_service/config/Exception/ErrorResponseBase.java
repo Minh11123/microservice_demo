@@ -10,8 +10,11 @@ public enum ErrorResponseBase {
     NOT_EXISTED_ACCOUNT(HttpStatus.NOT_FOUND, "Tài khoản không tồn tại"),
     LOGIN_FALSE(HttpStatus.FORBIDDEN, "Đăng nhập thất bại"),
 
+    NOT_FOUND_COMPANY(HttpStatus.NOT_FOUND, "Company not found"),
+    NOT_FOUND_CATEGORY(HttpStatus.NOT_FOUND, "Category not found"),
+
     IS_EXISTED(HttpStatus.INTERNAL_SERVER_ERROR, "Tài khoản này đã tồn tại"),
-    NOT_EXISTED_DEPARTMENT(HttpStatus.INTERNAL_SERVER_ERROR, "Phòng ban không tồn tại"),
+    NOT_EXISTED_DEPARTMENT(HttpStatus.INTERNAL_SERVER_ERROR, "Cong ty không tồn tại"),
 
     USER_NOT_EXISTED(HttpStatus.UNAUTHORIZED, "error.user_not_existed"),
 

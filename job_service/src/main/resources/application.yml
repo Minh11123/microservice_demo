@@ -4,7 +4,7 @@ spring:
   application:
     name: job-service
   datasource:
-    url: jdbc:mysql://192.168.31.108:3306/job_service?createDatabaseIfNotExist=true
+    url: jdbc:mysql://172.18.0.2:3306/job_service?createDatabaseIfNotExist=true
     username: root
     password: Abc123456789@
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -21,6 +21,6 @@ spring:
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://192.168.2.182:8761/eureka
+      defaultZone: http://192.168.0.3:9761/eureka
     register-with-eureka: false
-    fetch-registry: true
+    fetch-registry: false

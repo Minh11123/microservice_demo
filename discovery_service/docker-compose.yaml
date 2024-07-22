@@ -2,13 +2,15 @@ version: '3.8'
 
 services:
   discovery:
-    build: ./discovery
+    build: .
     image: discovery:latest
     container_name: discovery
     ports:
       - "8761:8761"
     networks:
       - microservice_system
+    environment:
+      MYSQL_ROOT_HOST : "%"
 
 networks:
   microservice_system:

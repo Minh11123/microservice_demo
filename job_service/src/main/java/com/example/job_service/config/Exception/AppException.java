@@ -23,6 +23,12 @@ public class AppException extends RuntimeException {
         this.message = message;
         this.path = path;
     }
+    public AppException(ErrorResponseBase errorResponseBase) {
+        this.timestamp = Instant.now();
+        this.code = errorResponseBase.getStatus().value();
+        this.message = errorResponseBase.getMessage();
+        this.path = path;
+    }
     public AppException(Exception ex) {
         String mes = ex.getMessage();
         if (mes == null) {
