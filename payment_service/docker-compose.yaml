@@ -1,0 +1,13 @@
+version: '3.8'
+services:
+  payment_service:
+    build: .
+    image: payment_service:latest
+    container_name: payment_service
+    ports:
+      - "8082:8082"
+    networks:
+      - microservice_system
+networks:
+  microservice_system:
+    external: true
