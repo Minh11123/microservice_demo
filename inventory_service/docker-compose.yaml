@@ -1,0 +1,13 @@
+version: '3.8'
+services:
+  inventory_service:
+    build: .
+    image: inventory_service:latest
+    container_name: inventory_service
+    ports:
+      - "8083:8083"
+    networks:
+      - microservice_system
+networks:
+  microservice_system:
+    external: true

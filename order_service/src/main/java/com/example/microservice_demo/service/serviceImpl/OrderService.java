@@ -30,6 +30,12 @@ public class OrderService implements IOrderService {
 
     @Autowired
     private GetInforUser getInforUser;
+
+    private final com.example.microservice_demo.kafka.OrderProducer orderProducer;
+
+    public OrderService(com.example.microservice_demo.kafka.OrderProducer orderProducer) {
+        this.orderProducer = orderProducer;
+    }
     @Override
     public List<Order> getAll() {
         logger.info("service");
@@ -57,6 +63,7 @@ public class OrderService implements IOrderService {
         }
         order.setProducts(productRepo.findAllById(ids));
         orderRepo.save(order);
+        orderProducer.sendOrderCreated(order.getId());
         return order;
     }
 
