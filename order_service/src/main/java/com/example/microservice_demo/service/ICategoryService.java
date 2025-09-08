@@ -4,7 +4,7 @@ import com.example.microservice_demo.model.Category;
 
 import java.util.List;
 
-public interface ICategoryServire {
+public interface ICategoryService {
 
 
     public List<Category> getAll();
