@@ -4,6 +4,7 @@ package com.example.microservice_demo.controller;
 import com.example.microservice_demo.controller.request.CreateOrderRequest;
 import com.example.microservice_demo.repository.OrderRepo;
 import com.example.microservice_demo.service.IOrderService;
+import com.example.microservice_demo.kafka.OrderProducer;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,6 +25,9 @@ public class OrderController {
 
     @Autowired
     private GetInforUser getInforUser;
+
+    @Autowired
+    private OrderProducer orderProducer;
 
 
     @GetMapping("")
@@ -46,5 +50,11 @@ public class OrderController {
     @PostMapping("")
     public ResponseEntity<?> create(@RequestBody CreateOrderRequest createOrderRequest){
         return new ResponseEntity<>(orderService.create(createOrderRequest), HttpStatus.OK);
+    }
+
+    @PostMapping("/{id}/refund")
+    public ResponseEntity<?> requestRefund(@PathVariable Long id) {
+        orderProducer.sendRefundRequested(id);
+        return new ResponseEntity<>("Refund requested", HttpStatus.OK);
     }
 }

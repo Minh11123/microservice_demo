@@ -1,0 +1,13 @@
+version: '3.8'
+services:
+  refund_service:
+    build: .
+    image: refund_service:latest
+    container_name: refund_service
+    ports:
+      - "8084:8084"
+    networks:
+      - microservice_system
+networks:
+  microservice_system:
+    external: true

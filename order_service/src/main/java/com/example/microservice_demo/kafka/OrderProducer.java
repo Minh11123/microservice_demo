@@ -14,4 +14,8 @@ public class OrderProducer {
     public void sendOrderCreated(Long orderId) {
         kafkaTemplate.send("order-created", new OrderEvent(orderId));
     }
+
+    public void sendRefundRequested(Long orderId) {
+        kafkaTemplate.send("refund-requested", new OrderEvent(orderId));
+    }
 }
