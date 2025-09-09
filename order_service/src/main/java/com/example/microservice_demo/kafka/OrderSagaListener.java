@@ -28,4 +28,28 @@ public class OrderSagaListener {
             orderRepo.save(order);
         });
     }
+
+    @KafkaListener(topics = "payment-refunded", groupId = "order-service")
+    public void handlePaymentRefunded(OrderEvent event) {
+        orderRepo.findById(event.getOrderId()).ifPresent(order -> {
+            order.setOrderStatus("payment_refunded");
+            orderRepo.save(order);
+        });
+    }
+
+    @KafkaListener(topics = "inventory-restored", groupId = "order-service")
+    public void handleInventoryRestored(OrderEvent event) {
+        orderRepo.findById(event.getOrderId()).ifPresent(order -> {
+            order.setOrderStatus("inventory_restored");
+            orderRepo.save(order);
+        });
+    }
+
+    @KafkaListener(topics = "shipping-returned", groupId = "order-service")
+    public void handleShippingReturned(OrderEvent event) {
+        orderRepo.findById(event.getOrderId()).ifPresent(order -> {
+            order.setOrderStatus("shipping_returned");
+            orderRepo.save(order);
+        });
+    }
 }
