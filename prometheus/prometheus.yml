@@ -18,3 +18,23 @@ scrape_configs:
     metrics_path: '/actuator/prometheus'
     static_configs:
       - targets: ['job_service:8081']
+  - job_name: 'gateway_service'
+    metrics_path: '/actuator/prometheus'
+    static_configs:
+      - targets: ['gateway_service:8088']
+  - job_name: 'authen_service'
+    metrics_path: '/actuator/prometheus'
+    static_configs:
+      - targets: ['authen_service:8888']
+  - job_name: 'customer_service'
+    metrics_path: '/actuator/prometheus'
+    static_configs:
+      - targets: ['customer_service:8082']
+  - job_name: 'refund_service'
+    metrics_path: '/actuator/prometheus'
+    static_configs:
+      - targets: ['refund_service:8084']
+  - job_name: 'discovery_service'
+    metrics_path: '/actuator/prometheus'
+    static_configs:
+      - targets: ['discovery_service:8761']

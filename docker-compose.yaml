@@ -52,6 +52,44 @@ services:
       - "8081:8081"
     networks:
       - microservice_system
+  gateway_service:
+    build: ./gateway_service
+    depends_on:
+      - kafka
+    ports:
+      - "8088:8088"
+    networks:
+      - microservice_system
+  authen_service:
+    build: ./Authen_service
+    depends_on:
+      - kafka
+    ports:
+      - "8888:8888"
+    networks:
+      - microservice_system
+  customer_service:
+    build: ./customer_service
+    depends_on:
+      - kafka
+    ports:
+      - "8085:8082"
+    networks:
+      - microservice_system
+  refund_service:
+    build: ./refund_service
+    depends_on:
+      - kafka
+    ports:
+      - "8084:8084"
+    networks:
+      - microservice_system
+  discovery_service:
+    build: ./discovery_service
+    ports:
+      - "8761:8761"
+    networks:
+      - microservice_system
   prometheus:
     image: prom/prometheus:latest
     volumes:
@@ -63,6 +101,11 @@ services:
       - payment_service
       - inventory_service
       - job_service
+      - gateway_service
+      - authen_service
+      - customer_service
+      - refund_service
+      - discovery_service
     networks:
       - microservice_system
   grafana:
