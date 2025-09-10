@@ -34,20 +34,20 @@ spring:
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
-#
-#spring.jpa.hibernate.ddl-auto=update
-#spring.jpa.show-sql=true
-#spring.jpa.properties.hibernate.format_sql=true
-#
-#
+management:
+  endpoints:
+    web:
+      exposure:
+        include: prometheus
+  metrics:
+    export:
+      prometheus:
+        enabled: true
 eureka:
   client:
     serviceUrl:
       defaultZone: http://192.168.2.182:8761/eureka
     register-with-eureka: true
     fetch-registry: true
-#eureka.client.register-with-eureka=true
-#eureka.client.fetch-registry=true
-#spring.application.name=microservice-demo
 
 
