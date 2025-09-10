@@ -34,6 +34,11 @@ spring:
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+  cache:
+    type: redis
+    cache-names: categories,products,orders
+    redis:
+      time-to-live: 600000
 management:
   endpoints:
     web:
