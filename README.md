@@ -17,4 +17,6 @@ docker-compose up --build
 ```
 
 Prometheus will be available at http://localhost:9090 and Grafana at
-http://localhost:3000.
+http://localhost:3000. Grafana is automatically configured with a
+Prometheus datasource, so you can start building dashboards without
+any manual setup.
