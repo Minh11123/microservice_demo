@@ -11,6 +11,8 @@ import org.apache.log4j.Logger;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.CacheEvict;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -37,12 +39,14 @@ public class OrderService implements IOrderService {
         this.orderProducer = orderProducer;
     }
     @Override
+    @Cacheable("orders")
     public List<Order> getAll() {
         logger.info("service");
         return orderRepo.findAll();
     }
 
     @Override
+    @CacheEvict(value = "orders", allEntries = true)
     public Order create(CreateOrderRequest createOrderRequest) {
         UserResponse userResponse = getInforUser.getInfor(createOrderRequest.getCustomerId()).getBody();
         Order order = new Order();
