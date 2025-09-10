@@ -35,3 +35,12 @@ eureka:
       defaultZone: http://192.168.2.182:8761/eureka
     register-with-eureka: true
     fetch-registry: true
+management:
+  endpoints:
+    web:
+      exposure:
+        include: prometheus
+  metrics:
+    export:
+      prometheus:
+        enabled: true

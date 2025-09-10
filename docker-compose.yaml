@@ -52,6 +52,27 @@ services:
       - "8081:8081"
     networks:
       - microservice_system
+  prometheus:
+    image: prom/prometheus:latest
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - "9090:9090"
+    depends_on:
+      - order_service
+      - payment_service
+      - inventory_service
+      - job_service
+    networks:
+      - microservice_system
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - "3000:3000"
+    depends_on:
+      - prometheus
+    networks:
+      - microservice_system
 networks:
   microservice_system:
     driver: bridge
